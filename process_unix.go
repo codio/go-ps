@@ -1,3 +1,4 @@
+//go:build linux || solaris
 // +build linux solaris
 
 package ps
@@ -18,7 +19,8 @@ type UnixProcess struct {
 	pgrp  int
 	sid   int
 
-	binary string
+	binary  string
+	cmdpath string
 }
 
 func (p *UnixProcess) Pid() int {
@@ -31,6 +33,10 @@ func (p *UnixProcess) PPid() int {
 
 func (p *UnixProcess) Executable() string {
 	return p.binary
+}
+
+func (p *UnixProcess) CmdPath() string {
+	return p.cmdpath
 }
 
 func findProcess(pid int) (Process, error) {

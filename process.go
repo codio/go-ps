@@ -19,6 +19,9 @@ type Process interface {
 	// Executable name running this process. This is not a path to the
 	// executable.
 	Executable() string
+
+	// CmdLine returns the command line arguments for this process.
+	CmdPath() string
 }
 
 // Processes returns all processes.
